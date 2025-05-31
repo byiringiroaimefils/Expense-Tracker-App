@@ -8,6 +8,9 @@ use App\Http\Middleware\LoginMiddleware;
 
 // Basic Routes
 Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/login', function () {
     return view('Auth.login');
 })->name('login');
 
@@ -23,7 +26,7 @@ Route::get('/transaction_form', function () {
 Route::post('/register', [registerController::class, 'register'])->name('register.store');
 Route::post('/login', [registerController::class, 'login'])->name('register.login');
 Route::get('/dashboard', [registerController::class, 'dashboard'])->name('dashboard')->middleware('App\Http\Middleware\LoginMiddleware');
-Route::get('/logout', [registerController::class, 'logout'])->name('register.logout')->middleware('App\Http\Middleware\LoginMiddleware');
+Route::post('/logout', [registerController::class, 'logout'])->name('register.logout')->middleware('App\Http\Middleware\LoginMiddleware');
 
 // Transaction routes
 Route::get('/transaction', [transactionController::class, 'index'])->name('transaction')->middleware('App\Http\Middleware\LoginMiddleware');

@@ -15,8 +15,12 @@ class transaction extends Model
         'transaction_date'
     ];
 
+    protected $casts = [
+        'transaction_date' => 'date',
+    ];
+
     public function register()
     {
-        return $this->belongsToMany(register::class, 'register_id');
+        return $this->belongsTo(register::class);
     }
 }
